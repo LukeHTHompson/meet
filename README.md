@@ -138,26 +138,26 @@ So that I can filter my search for events appropriately.
 
 #### Service Information
 
-service: auth-server
-stage: dev
-region: us-east-1
-stack: auth-server-dev
-resources: 26
-api keys:
-  None
-endpoints:
-  GET - https://6iiyeovdya.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url
-  GET - https://6iiyeovdya.execute-api.us-east-1.amazonaws.com/dev/api/token/{code}
-  GET - https://6iiyeovdya.execute-api.us-east-1.amazonaws.com/dev/api/get-events/{access_token}
-functions:
-  getAuthURL: auth-server-dev-getAuthURL
-  getAccessToken: auth-server-dev-getAccessToken
-  getCalendarEvents: auth-server-dev-getCalendarEvents
-layers:
-  None
-Serverless: Deprecation warning: Resolution of lambda version hashes was improved with better algorithm, which will be used in next major release.
-            Switch to it now by setting "provider.lambdaHashingVersion" to "20201221".
-            While it is highly encouraged to upgrade to new algorithm, you can still use the old approach by setting "provider.lambdaHashingVersion" to "20200924".
-            More Info: https://www.serverless.com/framework/docs/deprecations/#LAMBDA_HASHING_VERSION_V2
-
-Improve API performance – monitor it with the Serverless Dashboard: run "serverless"
+service: auth-server  
+stage: dev  
+region: us-east-1  
+stack: auth-server-dev  
+resources: 26  
+api keys:  
+  None  
+endpoints:  
+  GET - https://6iiyeovdya.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url  
+  GET - https://6iiyeovdya.execute-api.us-east-1.amazonaws.com/dev/api/token/{code}  
+  GET - https://6iiyeovdya.execute-api.us-east-1.amazonaws.com/dev/api/get-events/{access_token}  
+functions:  
+  getAuthURL: auth-server-dev-getAuthURL  
+  getAccessToken: auth-server-dev-getAccessToken  
+  getCalendarEvents: auth-server-dev-getCalendarEvents  
+layers:  
+  None  
+Serverless: Deprecation warning: Resolution of lambda version hashes was improved with better algorithm, which will be used in next major release.  
+            Switch to it now by setting "provider.lambdaHashingVersion" to "20201221".  
+            While it is highly encouraged to upgrade to new algorithm, you can still use the old approach by setting "provider.lambdaHashingVersion" to "20200924".  
+            More Info: https://www.serverless.com/framework/docs/deprecations/#LAMBDA_HASHING_VERSION_V2  
+  
+Improve API performance – monitor it with the Serverless Dashboard: run "serverless"  
