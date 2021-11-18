@@ -8,6 +8,7 @@ import { shallow } from "enzyme";
 import Event from "../Event";
 import { mockData } from "../mock-data";
 
+// Generalize Tests methods and expected results for "Must render ACCURATE" by using a function in api.js to get this mockdata info i.e. line 48-61
 
 // TEST(S)
 describe("<Event /> Component", () => {

@@ -25,8 +25,13 @@ class CitySearch extends Component {
     this.setState({
       query: suggestion
     });
+
+    // Update the state "events" in <App />
+    this.props.updateEvents(suggestion);
   }
 
+  // Need a way to make sure that "See All Cities" and other suggestions do not appear at launch
+  // Also need to make sure they go away once a suggestion is chosen, or the input field loses focus
   render() {
     return (
       <div className="CitySearch">
@@ -45,7 +50,9 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li key="all">
+          <li key="all" onClick={() => this.handleItemClicked("all")}
+          // className="hidden"
+          >
             <b>See All Cities</b>
           </li>
         </ul>

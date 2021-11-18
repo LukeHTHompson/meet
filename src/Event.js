@@ -25,6 +25,9 @@ class Event extends Component {
     const startYearMonthDay = dateString.slice(0, 10);
     const displayStartTime = startHour + " - " + startYearMonthDay;
 
+    const eventDescription = Object.values(event.description)
+    const eventLink = Object.values(event.htmlLink)
+
     // This is the e-mail value of the event organizer
     const group = Object.values(event.organizer)[0];
 
@@ -38,10 +41,10 @@ class Event extends Component {
         <p className="attendee-count">Attendees: Count</p>
       </div>
       <div className={this.state.hidden ? "details-expanded hidden" : "details-expanded"}>
-        <p className="location"></p>
-        <p className="description"></p>
-        <p className="public"></p>
-        <p className="event-link"></p>
+        <p className="location">ADDRESS TO GO HERE</p>
+        <p className="description">{eventDescription}</p>
+        <p className="public">public</p>
+        <p className="event-link">{eventLink}</p>
       </div>
       <button
         className="details-button"

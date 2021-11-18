@@ -1,3 +1,6 @@
+// Main Imports
+import { mockData } from "./mock-data";
+
 /**
  *
  * @param {*} events:
@@ -20,3 +23,7 @@ export const extractLocations = (events) => {
 //   var times = [...{ start: extractStartTimes, end: extractEndTimes, zone: extractTimeZones }]
 //   return times
 // }
+
+export const getEvents = async () => {
+  return mockData;
+};
