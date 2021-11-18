@@ -6,7 +6,7 @@ This project is to create an application that will allow users to see a list of 
 
 ### Running the App:
 
-This app can be visited at https://lukehthompson.github.io/MeetApp/
+This app can be visited at https://lukehthompson.github.io/meet/
 
 ### Project dependencies:
 
