@@ -11,6 +11,7 @@ import NumberOfEvents from "./NumberOfEvents";
 // Styling
 import "./App.css";
 import { getEvents, extractLocations } from "./api";
+import './nprogress.css';
 
 class App extends Component {
 

@@ -34,7 +34,7 @@ class Event extends Component {
     return <div>
       <div className="details-collapsed">
         <p className="time">{displayStartTime}</p>
-        <p className="title">{event.summary}</p>
+        <p className="title">{event.summary} | {event.location}</p>
         {/* Unclear what Group should pull from in MockData, going to use Organizer: Email for now */}
         <p className="group">{group}</p>
         {/* There is no data on number of attendees in MockData */}

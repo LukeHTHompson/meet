@@ -8,8 +8,6 @@ import { shallow } from "enzyme";
 import Event from "../Event";
 import { mockData } from "../mock-data";
 
-// Generalize Tests methods and expected results for "Must render ACCURATE" by using a function in api.js to get this mockdata info i.e. line 48-61
-
 // TEST(S)
 describe("<Event /> Component", () => {
 
@@ -46,23 +44,28 @@ describe("<Event /> Component", () => {
   });
 
   // Must render ACCURATE time details while collapsed
-  test("Render time info on each Event while collapsed", () => {
-    expect(EventWrapper.find(".time").text()).toBe("16:00 - 2020-05-19");
+  test("Render ACCURATE time info on each Event while collapsed", () => {
+    const dateString = Object.values(event.start)[0];
+    const startHour = dateString.slice(11, 16);
+    const startYearMonthDay = dateString.slice(0, 10);
+    const displayStartTime = startHour + " - " + startYearMonthDay;
+    expect(EventWrapper.find(".time").text()).toBe(displayStartTime);
   });
 
   // Must render ACCURATE title details while collapsed
-  test("Render title info on each Event while collapsed", () => {
-    expect(EventWrapper.find(".title").text()).toBe("Learn JavaScript");
+  test("Render ACCURATE title info on each Event while collapsed", () => {
+    expect(EventWrapper.find(".title").text()).toBe(event.summary + " | " + event.location);
   });
 
   // Must render ACCURATE group details while collapsed
-  test("Render group info on each Event while collapsed", () => {
-    expect(EventWrapper.find(".group").text()).toBe("fullstackwebdev@careerfoundry.com");
+  test("Render ACCURATE group info on each Event while collapsed", () => {
+    const group = Object.values(event.organizer)[0];
+    expect(EventWrapper.find(".group").text()).toBe(group);
   });
 
   // Must render ACCURATE attendee count details while collapsed - Currently not sure where this comes from, so leaving this test commented out.
-  // test("Render attendee count info on each Event while collapsed", () => {
-  //   expect(EventWrapper.find(".attendee-count")).toBe("?")
+  // test("Render ACCURATE attendee count info on each Event while collapsed", () => {
+  //   expect(EventWrapper.find(".attendee-count")).toBe("???")
   // });
 
   // Must have class of "hidden" on extra info by default
