@@ -16,6 +16,8 @@ class NumberOfEvents extends Component {
     this.setState({
       limit: value
     });
+    // Update the state "NumberOfEvents" in <App />
+    this.props.updateNumberOfEvents(value)
   }
 
   render() {

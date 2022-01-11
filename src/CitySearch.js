@@ -2,6 +2,7 @@
 
 // Main Imports
 import React, { Component } from "react";
+import NumberOfEvents from "./NumberOfEvents";
 
 class CitySearch extends Component {
 
@@ -22,14 +23,14 @@ class CitySearch extends Component {
     });
   }
 
-  handleItemClicked = (suggestion) => {
+  handleItemClicked = (suggestion, NumberOfEvents) => {
     this.setState({
       query: suggestion,
       showSuggestions: false
     });
 
     // Update the state "events" in <App />
-    this.props.updateEvents(suggestion);
+    this.props.updateEvents(suggestion, NumberOfEvents);
   }
 
   // Need a way to make sure that "See All Cities" and other suggestions do not appear at launch
@@ -47,12 +48,12 @@ class CitySearch extends Component {
           {this.state.suggestions.map((suggestion) => (
             <li
               key={suggestion}
-              onClick={() => this.handleItemClicked(suggestion)}
+              onClick={() => this.handleItemClicked(suggestion, this.props.NumberOfEvents)}
             >
               {suggestion}
             </li>
           ))}
-          <li key="all" onClick={() => this.handleItemClicked("all")}
+          <li key="all" onClick={() => this.handleItemClicked("all", this.props.NumberOfEvents)}
           // className="hidden"
           >
             <b>See All Cities</b>

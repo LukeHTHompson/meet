@@ -102,4 +102,19 @@ describe("<App /> integration", () => {
     AppWrapper.unmount()
   });
 
+  // Must see that the number of events returned is controlled by <App/> state "numberOfEvents" (which should match <NumberOfEvents/> state "limit")
+  test("Get a list with only one event when state 'limit' is set to 1", async () => {
+    const AppWrapper = mount(<App />);
+    // const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    AppWrapper.setState({ numberOfEvents: 1 });
+    const NumberOfEventsState = AppWrapper.state("numberOfEvents");
+    // const LimitState = AppWrapper.find(NumberOfEvents).state("limit");
+    const allEvents = await getEvents();
+    const someEvents = allEvents.slice(0, NumberOfEventsState);
+
+    // expect(NumberOfEventsState).toEqual(LimitState);
+    expect(someEvents).toHaveLength(NumberOfEventsState)
+    AppWrapper.unmount()
+  });
+
 });

@@ -15,11 +15,21 @@ import './nprogress.css';
 
 class App extends Component {
 
+  state = {
+    events: [],
+    locations: [],
+    numberOfEvents: 32
+  }
+
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        this.setState({
+          events,
+          locations: extractLocations(events),
+          numberOfEvents: 32
+        });
       }
     });
   }
@@ -28,31 +38,32 @@ class App extends Component {
     this.mounted = false;
   }
 
-  state = {
-    events: [],
-    locations: []
-  }
-
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
     getEvents().then((events) => {
       // Check if the location parameter passed in was "all"
-      const locationEvents = (location === "all") ?
-        // If location = "all" then DO NOT filter events before setting state below
-        events
-        :
+      // If location = "all" then DO NOT filter events before setting state below
+
+      const locationEvents = (location === "all")
+        ? events
         // If location != "all" then DO filter events before setting state below
-        events.filter((event) => event.location === location);
+        : events.filter((event) => event.location === location);
       this.setState({
-        events: locationEvents
+        events: locationEvents.slice(0, eventCount)
       });
+    });
+  }
+
+  updateNumberOfEvents = (limit) => {
+    this.setState({
+      numberOfEvents: limit
     });
   }
 
   render() {
     return (
       <div className="App">
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents />
+        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
+        <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} />
         <EventList events={this.state.events} />
       </div>
     );

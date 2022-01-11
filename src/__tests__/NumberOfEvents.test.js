@@ -32,17 +32,17 @@ describe("<NumberOfEvents /> Component", () => {
     expect(NumberOfEventsWrapper.find(".limit").prop("value")).toBe(99);
   })
 
-  // Must see state "limit" change from "32" to "10" based on simulating change event with a value 
-  // of "10"
-  test("Change State 'limit' when text input changes", () => {
-    NumberOfEventsWrapper.setState({
-      limit: 32
-    });
-    const eventObject = { target: { value: 10 } };
-    // Finds the element with class "city" and changes the value of that element to "Berlin" based on
-    // eventObject having the value "Berlin"
-    NumberOfEventsWrapper.find(".limit").simulate("Change", eventObject);
-    expect(NumberOfEventsWrapper.state("limit")).toBe(10);
-  });
+  // MUST REWRITE THIS AS AN INTEGRATED TEST SO THAT 'this.props.updateNumberOfEvents(value)' IN NUMBEROFEVENTS COMPONENT CAN BE RECEIVED FROM APP AND USED.
+  // // Must see state "limit" change from "32" to "10" based on simulating change event with a value 
+  // // of "10"
+  // test("Change State 'limit' when text input changes", () => {
+  //   NumberOfEventsWrapper.setState({
+  //     limit: 32
+  //   });
+  //   const eventObject = { target: { value: 10 } };
+  //   // Primes an event object with value 10 which will be used to simulate changing the input field to '10'
+  //   NumberOfEventsWrapper.find(".limit").simulate("Change", eventObject);
+  //   expect(NumberOfEventsWrapper.state("limit")).toBe(10);
+  // });
 
 });
