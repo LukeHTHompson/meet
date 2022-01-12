@@ -38,32 +38,40 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location, eventCount) => {
+  updateEvents = (location = null, eventCount = null) => {
     getEvents().then((events) => {
-      // Check if the location parameter passed in was "all"
-      // If location = "all" then DO NOT filter events before setting state below
+      // Check if the location parameter passed in was "all" or something else
+      location = location ? location : "all";
 
-      const locationEvents = (location === "all")
-        ? events
-        // If location != "all" then DO filter events before setting state below
-        : events.filter((event) => event.location === location);
+      const locationEvents =
+        location === "all"
+          // If location = "all" then DO NOT filter events before setting state below
+          ? events
+          // If location != "all" then DO filter events before setting state below
+          : events.filter((event) => event.location === location);
+
       this.setState({
-        events: locationEvents.slice(0, eventCount)
+        events: locationEvents.slice(
+          0,
+          eventCount ? eventCount : this.state.numberOfEvents
+        )
       });
     });
-  }
+  };
 
   updateNumberOfEvents = (limit) => {
     this.setState({
       numberOfEvents: limit
     });
+
+    this.updateEvents(null, limit);
   }
 
   render() {
     return (
       <div className="App">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
-        <NumberOfEvents updateNumberOfEvents={this.updateNumberOfEvents} />
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
         <EventList events={this.state.events} />
       </div>
     );
