@@ -24,7 +24,7 @@ class NumberOfEvents extends Component {
     return (
       <input
         type="text"
-        value={this.props.NumberOfEvents}
+        value={this.props.NumberofEvents ? this.props.NumberOfEvents : this.state.limit}
         className="limit"
         onChange={(e) => this.props.updateNumberOfEvents(e.target.value)}
       />
