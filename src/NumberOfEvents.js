@@ -11,6 +11,11 @@ class NumberOfEvents extends Component {
     limit: 32
   }
 
+  componentDidMount() {
+    this.mounted = true;
+    this.props.updateNumberOfEvents(this.props.NumberofEvents ? this.props.NumberOfEvents : this.state.limit)
+  }
+
   handleLimitChanged = (event) => {
     const value = event.target.value;
     this.setState({
