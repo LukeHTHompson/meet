@@ -13,7 +13,7 @@ class NumberOfEvents extends Component {
 
   componentDidMount() {
     this.mounted = true;
-    this.props.updateNumberOfEvents(this.props.NumberofEvents ? this.props.NumberOfEvents : this.state.limit)
+    this.props.updateNumberOfEvents(this.props.NumberofEvents)
   }
 
   handleLimitChanged = (event) => {
@@ -29,7 +29,7 @@ class NumberOfEvents extends Component {
     return (
       <input
         type="text"
-        value={this.props.NumberofEvents ? this.props.NumberOfEvents : this.state.limit}
+        value={this.props.NumberofEvents}
         className="limit"
         onChange={(e) => this.props.updateNumberOfEvents(e.target.value)}
       />
