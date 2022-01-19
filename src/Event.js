@@ -31,7 +31,7 @@ class Event extends Component {
     // This is the e-mail value of the event organizer
     const group = Object.values(event.organizer)[0];
 
-    return <div>
+    return <div className="event">
       <div className="details-collapsed">
         <p className="time">{displayStartTime}</p>
         <p className="title">{event.summary} | {event.location}</p>
@@ -40,12 +40,15 @@ class Event extends Component {
         {/* There is no data on number of attendees in MockData */}
         <p className="attendee-count">Attendees: Count</p>
       </div>
-      <div className={this.state.hidden ? "details-expanded hidden" : "details-expanded"}>
-        <p className="location">ADDRESS TO GO HERE</p>
-        <p className="description">{eventDescription}</p>
-        <p className="public">public</p>
-        <p className="event-link">{eventLink}</p>
-      </div>
+      {/* <div className={this.state.hidden ? "details-expanded hidden" : "details-expanded"}> */}
+      {!this.state.hidden &&
+        <div className="details-expanded">
+          <p className="location">ADDRESS TO GO HERE</p>
+          <p className="description">{eventDescription}</p>
+          <p className="public">public</p>
+          <p className="event-link">{eventLink}</p>
+        </div>
+      }
       <button
         className="details-button"
         onClick={this.toggleClass}

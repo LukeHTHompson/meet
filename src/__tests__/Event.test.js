@@ -68,17 +68,15 @@ describe("<Event /> Component", () => {
   //   expect(EventWrapper.find(".attendee-count")).toBe("???")
   // });
 
-  // Must have class of "hidden" on extra info by default
-  // Assumes that class "hidden" results in CSS display: none
+  // Must have no detail info rendered by default
   test("Extra Details are Hidden by default", () => {
-    expect(EventWrapper.find(".hidden")).toHaveLength(1);
+    expect(EventWrapper.find(".details-expanded")).toHaveLength(0);
   })
 
-  // Must remove class "hidden" from extra info on clicking the Details button
-  // Assumes that class "hidden" results in CSS display: none
+  // Must render detail info when clicking details button
   test("Render more info on clicking details button", () => {
     EventWrapper.find(".details-button").simulate("click");
-    expect(EventWrapper.find(".hidden")).toHaveLength(0);
+    expect(EventWrapper.find(".details-expanded")).toHaveLength(1);
   });
 
 });

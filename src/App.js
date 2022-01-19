@@ -60,11 +60,20 @@ class App extends Component {
   };
 
   updateNumberOfEvents = (limit) => {
-    this.setState({
-      numberOfEvents: limit
-    });
+    // Perform checks and handling for limit <= 0
+    // Should only allow positive integers for limit (with a minimum 1?)
+    if (limit === undefined || limit === '' || limit < 0) {
+      this.setState({
+        numberOfEvents: 32
+      });
+      this.updateEvents(null, 32)
 
-    this.updateEvents(null, limit);
+    } else if (limit !== undefined && limit !== '' && limit > 0) {
+      this.setState({
+        numberOfEvents: limit
+      });
+      this.updateEvents(null, limit)
+    }
   }
 
   render() {

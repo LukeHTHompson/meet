@@ -2,7 +2,7 @@
 
 // Main Imports
 import React, { Component } from "react";
-import NumberOfEvents from "./NumberOfEvents";
+// import NumberOfEvents from "./NumberOfEvents";
 
 class CitySearch extends Component {
 

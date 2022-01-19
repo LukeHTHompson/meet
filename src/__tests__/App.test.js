@@ -41,80 +41,80 @@ describe("<App /> component", () => {
 
 });
 
-// Integration Tests
-describe("<App /> integration", () => {
+// // Integration Tests
+// describe("<App /> integration", () => {
 
-  // Must give data from state "events" as a prop "events" to <EventList />
-  test("App passes state 'events' as a prop 'events' to component <EventList />", () => {
-    // Use of mount() instead of shallow() means that this component will render along with
-    // its child components, whereas shallow() only renders the component alone
-    const AppWrapper = mount(<App />);
-    const AppEventsState = AppWrapper.state("events");
+//   // Must give data from state "events" as a prop "events" to <EventList />
+//   test("App passes state 'events' as a prop 'events' to component <EventList />", () => {
+//     // Use of mount() instead of shallow() means that this component will render along with
+//     // its child components, whereas shallow() only renders the component alone
+//     const AppWrapper = mount(<App />);
+//     const AppEventsState = AppWrapper.state("events");
 
-    expect(AppEventsState).not.toEqual(undefined);
-    expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
-    // Using mount() renders the component to the DOM, and we need to clean up the DOM now
-    // by using unmount() on our wrapper
-    AppWrapper.unmount();
-  });
+//     expect(AppEventsState).not.toEqual(undefined);
+//     expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
+//     // Using mount() renders the component to the DOM, and we need to clean up the DOM now
+//     // by using unmount() on our wrapper
+//     AppWrapper.unmount();
+//   });
 
-  // Must give data from state "locations" as a prop "locations" to <CitySearch />
-  test("App passes state 'locations' as a prop 'locations' to component <CitySearch />", () => {
-    const AppWrapper = mount(<App />);
-    const AppLocationsState = AppWrapper.state("locations");
+//   // Must give data from state "locations" as a prop "locations" to <CitySearch />
+//   test("App passes state 'locations' as a prop 'locations' to component <CitySearch />", () => {
+//     const AppWrapper = mount(<App />);
+//     const AppLocationsState = AppWrapper.state("locations");
 
-    expect(AppLocationsState).not.toEqual(undefined);
-    expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
-    AppWrapper.unmount();
-  });
+//     expect(AppLocationsState).not.toEqual(undefined);
+//     expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
+//     AppWrapper.unmount();
+//   });
 
-  // Must give a list of events only from the location the user selects
-  test("Get list of events matching the location selected by ueser", async () => {
-    // Used asyn above because this test include asnyc code, like getEvents() and handleItemClicked()
-    const AppWrapper = mount(<App />);
-    const CitySearchWrapper = AppWrapper.find(CitySearch);
-    // Includes all possible locations from mockData events; does NOT include manually added "See All Cities"
-    const locations = extractLocations(mockData);
-    CitySearchWrapper.setState({ suggestions: locations });
-    const suggestions = CitySearchWrapper.state("suggestions");
-    // Randomize the suggested city that we will pick
-    const selectedIndex = Math.floor(Math.random() * (suggestions.length));
-    const selectedCity = suggestions[selectedIndex];
-    // Wait for the component to finish running the onClick function for the clicked suggestion
-    // Calling the onClick function directly, possible via instance(), like this also serves as emulating the click
-    await CitySearchWrapper.instance().handleItemClicked(selectedCity);
-    // Wait to get events
-    const allEvents = await getEvents();
-    const eventsToShow = allEvents.filter(event => event.location === selectedCity);
+//   // Must give a list of events only from the location the user selects
+//   test("Get list of events matching the location selected by ueser", async () => {
+//     // Used asyn above because this test include asnyc code, like getEvents() and handleItemClicked()
+//     const AppWrapper = mount(<App />);
+//     const CitySearchWrapper = AppWrapper.find(CitySearch);
+//     // Includes all possible locations from mockData events; does NOT include manually added "See All Cities"
+//     const locations = extractLocations(mockData);
+//     CitySearchWrapper.setState({ suggestions: locations });
+//     const suggestions = CitySearchWrapper.state("suggestions");
+//     // Randomize the suggested city that we will pick
+//     const selectedIndex = Math.floor(Math.random() * (suggestions.length));
+//     const selectedCity = suggestions[selectedIndex];
+//     // Wait for the component to finish running the onClick function for the clicked suggestion
+//     // Calling the onClick function directly, possible via instance(), like this also serves as emulating the click
+//     await CitySearchWrapper.instance().handleItemClicked(selectedCity);
+//     // Wait to get events
+//     const allEvents = await getEvents();
+//     const eventsToShow = allEvents.filter(event => event.location === selectedCity);
 
-    expect(AppWrapper.state("events")).toEqual(eventsToShow);
-    AppWrapper.unmount()
-  })
+//     expect(AppWrapper.state("events")).toEqual(eventsToShow);
+//     AppWrapper.unmount()
+//   })
 
-  // Must give a list of ALL events when the user selects "See All Cities"
-  test("Get a list of ALL events when user selects 'See All Cities' option", async () => {
-    const AppWrapper = mount(<App />);
-    const suggestionItems = AppWrapper.find(CitySearch).find(".suggestions li");
-    await suggestionItems.at(suggestionItems.length - 1).simulate("click");
-    const allEvents = await getEvents();
+//   // Must give a list of ALL events when the user selects "See All Cities"
+//   test("Get a list of ALL events when user selects 'See All Cities' option", async () => {
+//     const AppWrapper = mount(<App />);
+//     const suggestionItems = AppWrapper.find(CitySearch).find(".suggestions li");
+//     await suggestionItems.at(suggestionItems.length - 1).simulate("click");
+//     const allEvents = await getEvents();
 
-    expect(AppWrapper.state("events")).toEqual(allEvents)
-    AppWrapper.unmount()
-  });
+//     expect(AppWrapper.state("events")).toEqual(allEvents)
+//     AppWrapper.unmount()
+//   });
 
-  // Must see that the number of events returned is controlled by <App/> state "numberOfEvents" (which should match <NumberOfEvents/> state "limit")
-  test("Get a list with only one event when state 'limit' is set to 1", async () => {
-    const AppWrapper = mount(<App />);
-    // const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-    AppWrapper.setState({ numberOfEvents: 1 });
-    const NumberOfEventsState = AppWrapper.state("numberOfEvents");
-    // const LimitState = AppWrapper.find(NumberOfEvents).state("limit");
-    const allEvents = await getEvents();
-    const someEvents = allEvents.slice(0, NumberOfEventsState);
+//   // Must see that the number of events returned is controlled by <App/> state "numberOfEvents" (which should match <NumberOfEvents/> state "limit")
+//   test("Get a list with only one event when state 'limit' is set to 1", async () => {
+//     const AppWrapper = mount(<App />);
+//     // const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+//     AppWrapper.setState({ numberOfEvents: 1 });
+//     const NumberOfEventsState = AppWrapper.state("numberOfEvents");
+//     // const LimitState = AppWrapper.find(NumberOfEvents).state("limit");
+//     const allEvents = await getEvents();
+//     const someEvents = allEvents.slice(0, NumberOfEventsState);
 
-    // expect(NumberOfEventsState).toEqual(LimitState);
-    expect(someEvents).toHaveLength(NumberOfEventsState)
-    AppWrapper.unmount()
-  });
+//     // expect(NumberOfEventsState).toEqual(LimitState);
+//     expect(someEvents).toHaveLength(NumberOfEventsState)
+//     AppWrapper.unmount()
+//   });
 
-});
+// });
