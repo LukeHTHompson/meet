@@ -52,11 +52,9 @@ defineFeature(feature, test => {
       AppWrapper = await mount(<App />);
       AppWrapper.update();
       LimitControl = AppWrapper.find('.limit');
-      LimitControl.simulate('change', { target: { value: 1 } })
+      await LimitControl.simulate('change', { target: { value: 1 } })
       AppWrapper.update();
       EventList = AppWrapper.find('.event');
-      // AppWrapper.setState({ numberOfEvents: 1 });
-      // AppWrapper.update();
       Limit = AppWrapper.state('numberOfEvents');
       expect(Limit).toBe(1);
     });
