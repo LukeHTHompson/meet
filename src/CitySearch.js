@@ -2,7 +2,8 @@
 
 // Main Imports
 import React, { Component } from "react";
-import { InfoAlert } from './Alert';
+import ReactDOM from 'react-dom'
+import { ErrorAlert, InfoAlert } from './Alert';
 // import NumberOfEvents from "./NumberOfEvents";
 
 class CitySearch extends Component {
@@ -10,7 +11,8 @@ class CitySearch extends Component {
   state = {
     query: "",
     suggestions: [],
-    showSuggestions: undefined
+    showSuggestions: undefined,
+    infoText: ''
   }
 
   handleInputChanged = (event) => {
@@ -21,6 +23,7 @@ class CitySearch extends Component {
     if (suggestions.length === 0) {
       this.setState({
         query: value,
+        suggestions,
         infoText: 'We cannot find the city you are looking for. Please try again.'
       })
     } else {
@@ -37,7 +40,7 @@ class CitySearch extends Component {
       query: suggestion,
       suggestions: [],
       showSuggestions: false,
-      infotext: ''
+      infoText: ''
     });
 
     // Update the state "events" in <App />
@@ -49,6 +52,7 @@ class CitySearch extends Component {
     return (
       <div className="CitySearch">
         <InfoAlert text={this.state.infoText} />
+        <div>City to Search:</div>
         <input
           type="text"
           className="city"
