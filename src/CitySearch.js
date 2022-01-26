@@ -2,6 +2,7 @@
 
 // Main Imports
 import React, { Component } from "react";
+import { InfoAlert } from './Alert';
 // import NumberOfEvents from "./NumberOfEvents";
 
 class CitySearch extends Component {
@@ -17,16 +18,26 @@ class CitySearch extends Component {
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-    this.setState({
-      query: value,
-      suggestions,
-    });
+    if (suggestions.length === 0) {
+      this.setState({
+        query: value,
+        infoText: 'We cannot find the city you are looking for. Please try again.'
+      })
+    } else {
+      return this.setState({
+        query: value,
+        suggestions,
+        infoText: ''
+      });
+    }
   }
 
   handleItemClicked = (suggestion, NumberOfEvents) => {
     this.setState({
       query: suggestion,
-      showSuggestions: false
+      suggestions: [],
+      showSuggestions: false,
+      infotext: ''
     });
 
     // Update the state "events" in <App />
@@ -37,6 +48,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
+        <InfoAlert text={this.state.infoText} />
         <input
           type="text"
           className="city"
