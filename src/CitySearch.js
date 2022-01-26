@@ -2,8 +2,7 @@
 
 // Main Imports
 import React, { Component } from "react";
-import ReactDOM from 'react-dom'
-import { ErrorAlert, InfoAlert } from './Alert';
+import { InfoAlert } from './Alert';
 // import NumberOfEvents from "./NumberOfEvents";
 
 class CitySearch extends Component {
