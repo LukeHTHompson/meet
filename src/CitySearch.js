@@ -52,13 +52,20 @@ class CitySearch extends Component {
       <div className="CitySearch">
         <InfoAlert text={this.state.infoText} />
         <div>City to Search:</div>
-        <input
-          type="text"
-          className="city"
-          value={this.state.query}
-          onChange={this.handleInputChanged}
-          onFocus={() => { this.setState({ showSuggestions: true }) }}
-        />
+        {!navigator.onLine &&
+          <input
+            type="text"
+            className="city"
+            defaultValue={"Searching is disable while offline"}
+          />}
+        {navigator.onLine &&
+          <input
+            type="text"
+            className="city"
+            value={this.state.query}
+            onChange={this.handleInputChanged}
+            onFocus={() => { this.setState({ showSuggestions: true }) }}
+          />}
         <ul className={this.state.showSuggestions ? "suggestions" : "suggestions hidden"}>
           {this.state.suggestions.map((suggestion) => (
             <li
