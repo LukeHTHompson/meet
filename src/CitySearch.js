@@ -15,7 +15,7 @@ class CitySearch extends Component {
     infoText: ''
   }
 
-  handleInputChangedOffline = () => {
+  componentDidMount() {
     if (!navigator.onLine) {
       return this.setState({
         infoText: 'Events shown may not be up to date as you are offline. Please connect to enable searching.'
@@ -65,8 +65,7 @@ class CitySearch extends Component {
           <input
             type="text"
             className="city"
-            value={"Searching is disable while offline"}
-            onFocus={this.handleInputChangedOffline}
+            value={"Searching is disabled while offline"}
           />}
         {navigator.onLine &&
           <input
