@@ -15,6 +15,13 @@ class CitySearch extends Component {
   }
 
   handleInputChanged = (event) => {
+
+    if (!navigator.onLine) {
+      this.setState({
+        infoText: 'Events shown may not be up to date as you are offline. Please connect to enable searching.'
+      })
+    }
+
     const value = event.target.value;
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
@@ -57,6 +64,7 @@ class CitySearch extends Component {
             type="text"
             className="city"
             value={"Searching is disable while offline"}
+            onFocus={this.handleInputChanged}
           />}
         {navigator.onLine &&
           <input
