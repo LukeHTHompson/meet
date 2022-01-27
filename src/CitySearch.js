@@ -17,7 +17,7 @@ class CitySearch extends Component {
   handleInputChanged = (event) => {
 
     if (!navigator.onLine) {
-      this.setState({
+      return this.setState({
         infoText: 'Events shown may not be up to date as you are offline. Please connect to enable searching.'
       })
     }
