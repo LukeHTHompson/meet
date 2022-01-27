@@ -38,8 +38,8 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location = null, eventCount = null) => {
-    getEvents().then((events) => {
+  updateEvents = async (location = null, eventCount = null) => {
+    await getEvents().then((events) => {
       // Check if the location parameter passed in was "all" or something else
       location = location ? location : "all";
 
@@ -79,6 +79,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {/* <h1>Meet App</h1> */}
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} numberOfEvents={this.state.numberOfEvents} />
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
         <EventList events={this.state.events} />
