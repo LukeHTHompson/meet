@@ -56,7 +56,7 @@ class CitySearch extends Component {
           <input
             type="text"
             className="city"
-            defaultValue={"Searching is disable while offline"}
+            value={"Searching is disable while offline"}
           />}
         {navigator.onLine &&
           <input
