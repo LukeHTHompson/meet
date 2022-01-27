@@ -1,6 +1,7 @@
 // src/CitySearch.js
 
 // Main Imports
+import { set } from "nprogress";
 import React, { Component } from "react";
 import { InfoAlert } from './Alert';
 // import NumberOfEvents from "./NumberOfEvents";
@@ -14,14 +15,15 @@ class CitySearch extends Component {
     infoText: ''
   }
 
-  handleInputChanged = (event) => {
-
+  handleInputChangedOffline = () => {
     if (!navigator.onLine) {
       return this.setState({
         infoText: 'Events shown may not be up to date as you are offline. Please connect to enable searching.'
       })
     }
+  }
 
+  handleInputChanged = (event) => {
     const value = event.target.value;
     const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
@@ -64,7 +66,7 @@ class CitySearch extends Component {
             type="text"
             className="city"
             value={"Searching is disable while offline"}
-            onFocus={this.handleInputChanged}
+            onFocus={this.handleInputChangedOffline}
           />}
         {navigator.onLine &&
           <input
