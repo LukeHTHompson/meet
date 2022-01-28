@@ -39,19 +39,17 @@ class Event extends Component {
         <p className="time">{displayStartTime}</p>
         <p className="title">{event.summary} | {event.location}</p>
         {/* Unclear what Group should pull from in MockData, going to use Organizer: Email for now */}
-        <a className="group" href={`mailto:${group}`}>Email Organizer</a>
+        {group && <a className="group" href={`mailto:${group}`}>Email Organizer</a>}
         {/* There is no data on number of attendees in MockData */}
         {/* <p className="attendee-count">Attendees: Count</p> */}
       </div>
       {/* <div className={this.state.hidden ? "details-expanded hidden" : "details-expanded"}> */}
       {!this.state.hidden &&
         <div className="details-expanded">
-          <p className="description">{eventDescription}</p>
+          {eventDescription && <p className="description">{eventDescription}</p>}
           <p className="public">Public/Private: Public</p>
-          {/* Link was being put into an array with a key for each individual character somehow. Used join('') to bring them together again */}
-          {/* <a className="calendar-event-link" href={eventLink.join('')}>Calendar Event Link</a> */}
-          <p><a className="calendar-event-link" href={eventLink}>Calendar Event Link</a></p>
-          <p><a className="event-hangout-link" href={hangoutLink}>Event Hangout Link</a></p>
+          {eventLink && <p><a className="calendar-event-link" href={eventLink}>Calendar Event Link</a></p>}
+          {hangoutLink && <p><a className="event-hangout-link" href={hangoutLink}>Event Hangout Link</a></p>}
           {/* CSS to make these smaller font and gray */}
           {created && <p className="created">Created: {created}</p>}
           {updated && <p className="updated">Updated: {updated}</p>}
