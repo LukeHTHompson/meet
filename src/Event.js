@@ -50,8 +50,8 @@ class Event extends Component {
           <p className="public">Public/Private: Public</p>
           {/* Link was being put into an array with a key for each individual character somehow. Used join('') to bring them together again */}
           {/* <a className="calendar-event-link" href={eventLink.join('')}>Calendar Event Link</a> */}
-          <a className="calendar-event-link" href={eventLink}>Calendar Event Link</a>
-          <a className="event-hangout-link" href={hangoutLink}>Event Hangout Link</a>
+          <p><a className="calendar-event-link" href={eventLink}>Calendar Event Link</a></p>
+          <p><a className="event-hangout-link" href={hangoutLink}>Event Hangout Link</a></p>
           {/* CSS to make these smaller font and gray */}
           {created && <p className="created">Created: {created}</p>}
           {updated && <p className="updated">Updated: {updated}</p>}
