@@ -30,21 +30,23 @@ class App extends Component {
   async componentDidMount() {
     this.mounted = true;
     let accessToken = localStorage.getItem('access_token');
-    if (!accessToken) {
-      console.log('34: ')
-      accessToken = await getAccessToken()
-    }
+    // if (!accessToken) {
+    //   console.log('34: ')
+    //   accessToken = await getAccessToken()
+    // }
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
     if ((code || isTokenValid) && this.mounted) {
-      await getEvents().then((events) => {
+      getEvents().then((events) => {
         if (this.mounted) {
           this.setState({
             events,
             locations: extractLocations(events),
-            numberOfEvents: 32
+            // numberOfEvents: 32
+            numberOfEvents: this.state.numberOfEvents ? this.state.numberOfEvents : 32
+            //
           });
         }
       });
@@ -55,8 +57,8 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = async (location = null, eventCount = null) => {
-    await getEvents().then((events) => {
+  updateEvents = (location = null, eventCount = null) => {
+    getEvents().then((events) => {
       // Check if the location parameter passed in was "all" or something else
       location = location ? location : "all";
 
