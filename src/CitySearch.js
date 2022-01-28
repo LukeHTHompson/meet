@@ -1,7 +1,7 @@
 // src/CitySearch.js
 
 // Main Imports
-import { set } from "nprogress";
+// import { set } from "nprogress";
 import React, { Component } from "react";
 import { InfoAlert } from './Alert';
 // import NumberOfEvents from "./NumberOfEvents";
