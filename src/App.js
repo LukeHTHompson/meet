@@ -55,10 +55,16 @@ class App extends Component {
     getEvents().then((events) => {
       // Check if the location parameter passed in was "all" or something else
       // location = location ? location : "all";
-      location = this.state.searchLocation ? this.state.searchLocation : "all"
-      this.setState({
-        searchLocation: location
-      });
+      if (location) {
+        this.setState({
+          searchLocation: location
+        });
+      } else {
+        this.setState({
+          searchLocation: "all"
+        });
+      }
+      location = this.state.searchLocation;
 
       const locationEvents =
         location === "all"
