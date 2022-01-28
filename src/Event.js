@@ -25,7 +25,7 @@ class Event extends Component {
     const startYearMonthDay = dateString.slice(0, 10);
     const displayStartTime = startHour + " - " + startYearMonthDay;
     // const eventDescription = Object.values(event.description)
-    eventDescription = event.description
+    const eventDescription = event.description
     const eventLink = event.htmlLink
     const hangoutLink = event.hangoutLink
     const created = event.created ? event.created : ''
