@@ -27,7 +27,9 @@ class Event extends Component {
 
     const eventDescription = Object.values(event.description)
     const eventLink = Object.values(event.htmlLink)
-    console.log(eventLink)
+    const hangoutLink = Object.values(event.hangoutLink)
+    const created = Object.values(event.created)
+    const updated = Object.values(event.updated)
 
     // This is the e-mail value of the event organizer
     const group = Object.values(event.organizer)[0];
@@ -37,17 +39,21 @@ class Event extends Component {
         <p className="time">{displayStartTime}</p>
         <p className="title">{event.summary} | {event.location}</p>
         {/* Unclear what Group should pull from in MockData, going to use Organizer: Email for now */}
-        <p className="group">{group}</p>
+        <p className="group">Organizer Email: {group}</p>
         {/* There is no data on number of attendees in MockData */}
-        <p className="attendee-count">Attendees: Count</p>
+        {/* <p className="attendee-count">Attendees: Count</p> */}
       </div>
       {/* <div className={this.state.hidden ? "details-expanded hidden" : "details-expanded"}> */}
       {!this.state.hidden &&
         <div className="details-expanded">
           <p className="description">{eventDescription}</p>
           <p className="public">Public/Private: Public</p>
-          <p>{eventLink}</p>
-          <a className="event-link" href={eventLink.join('')}>Google Event</a>
+          {/* Link was being put into an array with a key for each individual character somehow. Used join('') to bring them together again */}
+          <a className="calendar-event-link" href={eventLink.join('')}>Calendar Event Link</a>
+          <a className="event-hangout-link" href={hangoutLink.join('')}>Event Hangout Link</a>
+          {/* CSS to make these smaller font and gray */}
+          <p className="created">Created: </p>
+          <p className="updated">Updated: </p>
         </div>
       }
       <button
