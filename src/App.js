@@ -26,10 +26,14 @@ class App extends Component {
     showWelcomeScreen: undefined
   }
 
+
   async componentDidMount() {
     this.mounted = true;
-    const accessToken = localStorage.getItem('access_token');
-    if (!accessToken) { accessToken = await getAccessToken() }
+    let accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      console.log('34: ')
+      accessToken = await getAccessToken()
+    }
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
@@ -102,8 +106,9 @@ class App extends Component {
 
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
-
     const { locations, numberOfEvents, events } = this.state;
+    if (events.length !== numberOfEvents) return <div className="App" />
+
     return (
       <div className="App">
         {/* <h1>Meet App</h1> */}
