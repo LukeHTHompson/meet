@@ -24,12 +24,12 @@ class Event extends Component {
     const startHour = dateString.slice(11, 16);
     const startYearMonthDay = dateString.slice(0, 10);
     const displayStartTime = startHour + " - " + startYearMonthDay;
-
-    const eventDescription = Object.values(event.description)
-    const eventLink = Object.values(event.htmlLink)
-    const hangoutLink = Object.values(event.hangoutLink)
-    const created = Object.values(event.created)
-    const updated = Object.values(event.updated)
+    // const eventDescription = Object.values(event.description)
+    eventDescription = event.description
+    const eventLink = event.htmlLink
+    const hangoutLink = event.hangoutLink
+    const created = event.created ? event.created : ''
+    const updated = event.updated ? event.updated : ''
 
     // This is the e-mail value of the event organizer
     const group = Object.values(event.organizer)[0];
@@ -39,7 +39,7 @@ class Event extends Component {
         <p className="time">{displayStartTime}</p>
         <p className="title">{event.summary} | {event.location}</p>
         {/* Unclear what Group should pull from in MockData, going to use Organizer: Email for now */}
-        <p className="group">Organizer Email: {group}</p>
+        <a className="group" href={`mailto:${group}`}>Email Organizer</a>
         {/* There is no data on number of attendees in MockData */}
         {/* <p className="attendee-count">Attendees: Count</p> */}
       </div>
@@ -52,8 +52,8 @@ class Event extends Component {
           <a className="calendar-event-link" href={eventLink.join('')}>Calendar Event Link</a>
           <a className="event-hangout-link" href={hangoutLink.join('')}>Event Hangout Link</a>
           {/* CSS to make these smaller font and gray */}
-          <p className="created">Created: </p>
-          <p className="updated">Updated: </p>
+          {created && <p className="created">Created: {created}</p>}
+          {updated && <p className="updated">Updated: {updated}</p>}
         </div>
       }
       <button
