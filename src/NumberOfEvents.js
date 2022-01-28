@@ -9,7 +9,8 @@ import { ErrorAlert } from './Alert';
 class NumberOfEvents extends Component {
 
   state = {
-    limit: 32,
+    // // limit: 32,
+    // limit: this.props.NumberofEvents ? this.props.NumberofEvents : 32,
     errorText: ''
   }
 
@@ -28,7 +29,7 @@ class NumberOfEvents extends Component {
       })
     } else {
       this.setState({
-        limit: value,
+        // limit: value,
         errorText: ''
       });
     }
