@@ -46,6 +46,7 @@ class Event extends Component {
           <p className="location">ADDRESS TO GO HERE</p>
           <p className="description">{eventDescription}</p>
           <p className="public">public</p>
+          <p>{eventLink}</p>
           <a className="event-link" href={eventLink}>Google Event</a>
         </div>
       }
