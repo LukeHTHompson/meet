@@ -20,10 +20,10 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 class App extends Component {
 
   state = {
-    events: this.state.events ? this.state.events : [],
-    locations: this.state.locations ? this.state.locations : [],
-    searchLocation: this.state.searchLocation ? this.state.searchLocation : 'all',
-    numberOfEvents: this.state.numberOfEvents ? this.state.numberOfEvents : 32,
+    events: [],
+    locations: [],
+    searchLocation: 'all',
+    numberOfEvents: 32,
     showWelcomeScreen: undefined
   }
 
