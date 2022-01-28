@@ -27,6 +27,7 @@ class Event extends Component {
 
     const eventDescription = Object.values(event.description)
     const eventLink = Object.values(event.htmlLink)
+    console.log(eventLink)
 
     // This is the e-mail value of the event organizer
     const group = Object.values(event.organizer)[0];
