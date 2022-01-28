@@ -44,11 +44,10 @@ class Event extends Component {
       {/* <div className={this.state.hidden ? "details-expanded hidden" : "details-expanded"}> */}
       {!this.state.hidden &&
         <div className="details-expanded">
-          <p className="location">ADDRESS TO GO HERE</p>
           <p className="description">{eventDescription}</p>
-          <p className="public">public</p>
+          <p className="public">Public/Private: Public</p>
           <p>{eventLink}</p>
-          <a className="event-link" href={'"' + eventLink + '"'}>Google Event</a>
+          <a className="event-link" href={eventLink.join('')}>Google Event</a>
         </div>
       }
       <button
