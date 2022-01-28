@@ -20,20 +20,16 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 class App extends Component {
 
   state = {
-    events: [],
-    locations: [],
-    numberOfEvents: 32,
+    events: this.state.events ? this.state.events : [],
+    locations: this.state.locations ? this.state.locations : [],
+    searchLocation: this.state.searchLocation ? this.state.searchLocation : 'all',
+    numberOfEvents: this.state.numberOfEvents ? this.state.numberOfEvents : 32,
     showWelcomeScreen: undefined
   }
-
 
   async componentDidMount() {
     this.mounted = true;
     let accessToken = localStorage.getItem('access_token');
-    // if (!accessToken) {
-    //   console.log('34: ')
-    //   accessToken = await getAccessToken()
-    // }
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
@@ -44,9 +40,7 @@ class App extends Component {
           this.setState({
             events,
             locations: extractLocations(events),
-            // numberOfEvents: 32
             numberOfEvents: this.state.numberOfEvents ? this.state.numberOfEvents : 32
-            //
           });
         }
       });
@@ -60,7 +54,11 @@ class App extends Component {
   updateEvents = (location = null, eventCount = null) => {
     getEvents().then((events) => {
       // Check if the location parameter passed in was "all" or something else
-      location = location ? location : "all";
+      // location = location ? location : "all";
+      location = this.state.searchLocation ? this.state.searchLocation : "all"
+      this.setState({
+        searchLocation: location
+      });
 
       const locationEvents =
         location === "all"
@@ -70,6 +68,7 @@ class App extends Component {
           : events.filter((event) => event.location === location);
 
       this.setState({
+        // searchLocation: location,
         events: locationEvents.slice(
           0,
           eventCount ? eventCount : this.state.numberOfEvents
@@ -81,17 +80,18 @@ class App extends Component {
   updateNumberOfEvents = (limit) => {
     // Perform checks and handling for limit <= 0
     // Should only allow positive integers for limit (with a minimum 1?)
+    const searchLocation = this.state.searchLocation ? this.state.searchLocation : "all"
     if (limit === undefined || limit === '' || limit < 0) {
       this.setState({
         numberOfEvents: 32
       });
-      this.updateEvents(null, 32)
+      this.updateEvents(searchLocation, 32)
 
     } else if (limit !== undefined && limit !== '' && limit > 0) {
       this.setState({
-        numberOfEvents: limit
+        numberOfEvents: parseInt(limit, 10)
       });
-      this.updateEvents(null, limit)
+      this.updateEvents(searchLocation, limit)
     }
   }
 
