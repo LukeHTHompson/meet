@@ -32,7 +32,7 @@ This app can be visited at https://lukehthompson.github.io/meet/
 
 ### API(s) Used:
 
-  - N/A  
+  - Google Calendar API
   
   
 # Test Case Summaries:
