@@ -3,7 +3,7 @@
 // Main Imports
 // import { set } from "nprogress";
 import React, { Component } from "react";
-import { InfoAlert } from './Alert';
+import { InfoAlert } from "./Alert";
 // import NumberOfEvents from "./NumberOfEvents";
 
 class CitySearch extends Component {
@@ -12,13 +12,13 @@ class CitySearch extends Component {
     query: "",
     suggestions: [],
     showSuggestions: undefined,
-    infoText: ''
+    infoText: ""
   }
 
   componentDidMount() {
     if (!navigator.onLine) {
       return this.setState({
-        infoText: 'Events shown may not be up to date as you are offline. Please connect to enable searching.'
+        infoText: "Events shown may not be up to date as you are offline. Please connect to enable searching."
       })
     }
   }
@@ -32,13 +32,13 @@ class CitySearch extends Component {
       this.setState({
         query: value,
         suggestions,
-        infoText: 'We cannot find the city you are looking for. Please try again.'
+        infoText: "We cannot find the city you are looking for. Please try again."
       })
     } else {
       return this.setState({
         query: value,
         suggestions,
-        infoText: ''
+        infoText: ""
       });
     }
   }
@@ -48,7 +48,7 @@ class CitySearch extends Component {
       query: suggestion,
       suggestions: [],
       showSuggestions: false,
-      infoText: ''
+      infoText: ""
     });
 
     // Update the state "events" in <App />

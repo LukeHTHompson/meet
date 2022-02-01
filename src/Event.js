@@ -28,8 +28,8 @@ class Event extends Component {
     const eventDescription = event.description
     const eventLink = event.htmlLink
     const hangoutLink = event.hangoutLink
-    const created = event.created ? event.created : ''
-    const updated = event.updated ? event.updated : ''
+    const created = event.created ? event.created : ""
+    const updated = event.updated ? event.updated : ""
 
     // This is the e-mail value of the event organizer
     const group = Object.values(event.organizer)[0];

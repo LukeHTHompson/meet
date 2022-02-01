@@ -2,7 +2,7 @@
 
 // Main Imports
 import React, { Component } from "react";
-import { ErrorAlert } from './Alert';
+import { ErrorAlert } from "./Alert";
 
 // Components
 
@@ -11,7 +11,7 @@ class NumberOfEvents extends Component {
   state = {
     // // limit: 32,
     // limit: this.props.NumberofEvents ? this.props.NumberofEvents : 32,
-    errorText: ''
+    errorText: ""
   }
 
   componentDidMount() {
@@ -25,12 +25,12 @@ class NumberOfEvents extends Component {
     console.log(value);
     if (value.length > 0 && !lettersOrNegative.test(value)) {
       this.setState({
-        errorText: 'Select a positive integer.'
+        errorText: "Select a positive integer."
       })
     } else {
       this.setState({
         // limit: value,
-        errorText: ''
+        errorText: ""
       });
     }
     // Update the state "NumberOfEvents" in <App />

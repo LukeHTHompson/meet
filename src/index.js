@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
-import * as atatus from 'atatus-spa';
-atatus.config('eb8baee199c5492b934e437b2573835d').install();
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
+import * as atatus from "atatus-spa";
+atatus.config("eb8baee199c5492b934e437b2573835d").install();
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
@@ -26,4 +26,4 @@ serviceWorkerRegistration.register();
 reportWebVitals();
 
 // This line was being used to throw an error manually as confirmation that the atatus tracking had succeeded
-// atatus.notify(new Error('Test Atatus Setup'));
+// atatus.notify(new Error("Test Atatus Setup"));
