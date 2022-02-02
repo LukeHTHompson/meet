@@ -5,12 +5,15 @@ import React, { Component } from "react";
 class Event extends Component {
 
   state = {
-    hidden: true
+    hidden: true,
+    showHide: "Show Details"
   }
 
   toggleClass = () => {
     const currentState = this.state.hidden
     this.setState({ hidden: !currentState });
+    if (this.state.showHide = "Show Details") { this.setState({ showHide: "Hide Details" }) };
+    if (this.state.showHide = "Hide Details") { this.setState({ showHide: "Show Details" }) };
   }
 
   render() {
@@ -59,7 +62,7 @@ class Event extends Component {
         className="details-button"
         onClick={this.toggleClass}
       >
-        Details
+        {this.state.showHide}
       </button>
     </div>;
   }
