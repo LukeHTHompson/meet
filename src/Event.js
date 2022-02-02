@@ -12,8 +12,8 @@ class Event extends Component {
   toggleClass = () => {
     const currentState = this.state.hidden
     this.setState({ hidden: !currentState });
-    if (this.state.showHide = "Show Details") { this.setState({ showHide: "Hide Details" }) };
-    if (this.state.showHide = "Hide Details") { this.setState({ showHide: "Show Details" }) };
+    if (this.state.showHide === "Show Details") { this.setState({ showHide: "Hide Details" }) };
+    if (this.state.showHide === "Hide Details") { this.setState({ showHide: "Show Details" }) };
   }
 
   render() {
